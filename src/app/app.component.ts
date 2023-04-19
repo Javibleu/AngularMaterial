@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AngularMaterial';
+
+  /**
+   *
+   */
+  constructor(@Inject(DOCUMENT) private document: Document, private renderer: Renderer2) {
+    
+  }
+
+  onSetThemeOne() {
+    this.renderer.removeAttribute(this.document.body, 'class');
+  }
+
+  onSetThemeTwo() {
+    this.renderer.setAttribute(this.document.body, 'class', 'light');
+  }
 }
